@@ -4,6 +4,57 @@
   
     
     <entry>
+      <title>2022-11-1</title>
+      <link href="/2022/11/01/2022-11-1/"/>
+      <url>/2022/11/01/2022-11-1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="清晰明了-言行一致"><a href="#清晰明了-言行一致" class="headerlink" title="清晰明了    言行一致"></a>清晰明了    言行一致</h1><h2 id="多做具体的事"><a href="#多做具体的事" class="headerlink" title="多做具体的事"></a>多做具体的事</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> POSTGURADUATE </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>nonpostgraduate</title>
+      <link href="/2022/09/29/nonpostgraduate/"/>
+      <url>/2022/09/29/nonpostgraduate/</url>
+      
+        <content type="html"><![CDATA[<hr><p>title: 🐈日志2022-09-29<br>date: 2022-09-29 21:28:33<br>tags: dailynote<br>rating: ⭐️<br>excerpt: </p><hr><h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul><li><input disabled="" type="checkbox"> 多喝水，避免久坐不动</li><li><input disabled="" type="checkbox"> 阅读一篇文献</li></ul><h2 id="Tracking"><a href="#Tracking" class="headerlink" title="Tracking"></a>Tracking</h2><h2 id="ReadList"><a href="#ReadList" class="headerlink" title="ReadList"></a>ReadList</h2><!--此处显示今日已阅读文献--><pre class="line-numbers language-dataview" data-language="dataview"><code class="language-dataview">TABLE file.tags AS 标签, rating AS 评分, comment AS 初步印象FROM &quot;02-Reading&#x2F;mdnotes&quot;WHERE file.name[0] &#x3D; &quot;@&quot;WHERE file.tags[0] !&#x3D; &quot;#unread&quot;WHERE file.mtime&gt;&#x3D;date(2022-09-29) AND file.mtime&lt;date(2022-09-30)SORT file.mtime desc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="DraftList"><a href="#DraftList" class="headerlink" title="DraftList"></a>DraftList</h2><!--此处显示今日新增或修改的草稿或其它非文献笔记文件--><pre class="line-numbers language-dataview" data-language="dataview"><code class="language-dataview">TABLE file.tags AS Tags, status AS Status, destination AS DestinationFROM &quot;01-Diary&#x2F;本周事务&quot; OR &quot;03-Projects&quot; OR &quot;05-Life&quot; OR &quot;06-Cards&quot;WHERE (file.mtime&gt;&#x3D;date(2022-09-29) AND file.mtime&lt;date(2022-09-30)) OR (file.ctime&gt;&#x3D;date(2022-09-29) AND file.ctime&lt;date(2022-09-30))SORT file.mtime desc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> blue in black eyes </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2022/04/27/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%801.2/"/>
+      <url>/2022/04/27/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%801.2/</url>
+      
+        <content type="html"><![CDATA[<h2 id="实验一"><a href="#实验一" class="headerlink" title="实验一"></a>实验一</h2><p><code>debug</code>进入<code>debug模式</code></p><p><code>r</code>查看寄存器</p><p>​        当前 <code>cs : ip</code> 为<code>0DAB:0100</code></p> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_WAmjYnP7iE.png" alt="dosbox-x_WAmjYnP7iE" style="zoom: 80%;" /><p>直接在当前指令修改</p><p>此次用<code>e</code>命令输入机器码进行代码写入</p> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_IvJah13wQh.png" alt="dosbox-x_IvJah13wQh" style="zoom:80%;" /><p><code>u</code>命令查看汇编指令是否输入正确</p><p>​    此刻发现<code>0DAB：011D</code>处与理想不符</p> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_ghnJb4JpUf.png" alt="dosbox-x_ghnJb4JpUf" style="zoom:80%;" /><p>向上查阅，发现在<code>0DAB：011D</code>输入时直接跨过机器码04，输入了下一个机器码<code>9c</code></p> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_PH2Rw9xkvO.png" alt="dosbox-x_PH2Rw9xkvO" style="zoom:80%;" /><p> 用<code>e</code> <code>0BAD：011D</code>从输错的地方进行修正</p> <img src="C:\Users\19923\AppData\Roaming\Typora\typora-user-images\image-20220427195456416.png" alt="image-20220427195456416" style="zoom:80%;" /><p> 用<code>t</code>执行输入的指令</p> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_7ulfgr54WG.png" alt="dosbox-x_7ulfgr54WG" style="zoom:80%;" /> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_gmZphQtM1M.png" alt="dosbox-x_gmZphQtM1M" style="zoom:80%;" /><p> 用<code>a</code>指令将3条指令写入<code>0200：0</code>处</p> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_EIKYxmF61X.png" alt="dosbox-x_EIKYxmF61X" style="zoom:80%;" /><p> 用<code>t</code>指令运行，得到<code>ax=008</code></p> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_QuLDcgaUwD.png" alt="dosbox-x_QuLDcgaUwD" style="zoom:80%;" /> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_QHuzNaeH9n.png" alt="dosbox-x_QHuzNaeH9n" style="zoom:80%;" /><h2 id="实验二"><a href="#实验二" class="headerlink" title="实验二"></a>实验二</h2><p><code>d fff0:0 ff</code>查看<code>FFF00H:FFFFFH</code></p><p>发现在<code>FFFF0:FFFFF</code>处应该为所要找的ROM的生产日期</p><p> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-05\dosbox-x_nt52x6woyh.png" alt="dosbox-x_nt52x6woyh"></p><p><code>e fff0:f0</code>对日期进行修改，目标为11/30/01</p><p> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-05\dosbox-x_9hzfSDo31e.png" alt="dosbox-x_9hzfSDo31e"></p><p>查看发现并未改变，疑似目标日期的格式不符所导致修改错误。 <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-05\dosbox-x_sABWEsPQwX.png" alt="dosbox-x_sABWEsPQwX"></p><p>重新进行一边，将日期修改为30/11/01</p><p>依旧不行</p><p> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-05\dosbox-x_dtPQVwNdjj.png" alt="dosbox-x_dtPQVwNdjj"></p><h2 id="实验三"><a href="#实验三" class="headerlink" title="实验三"></a><strong>实验三</strong></h2><p><code>d b810:0</code>查看将要修改的地址内容</p><p><code>e b810:0</code>进行修改，这里发现B8100H存储的30与之前查看的20不符，</p><p><code>d b810:0</code>再次进行查看，发现不仅没有修改成功，而且又变成另一个值</p><p>​    注意看B8105中的数字</p><p>​        第一次查看时为20</p><p>​        第二次修改时为34，并妄图对其修改为05</p><p>​        第三次查看时为42</p><p>经网上查阅，B800H:0000H后的内存是显示存储器</p><p>用debug的E命令修改为01 02 03 04…</p><p>但由于后面的D命令，刷新了屏幕，所以再用D命令看B810:0000时就看不到01 02 03…</p><p> <img src="C:\Users\19923\AppData\Roaming\Typora\typora-user-images\image-20220503201530843.png" alt="image-20220503201530843"></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="/2022/01/18/%E7%8E%B0%E5%9C%A8%E6%98%AF2022.1.18%E7%9A%8410%EF%BC%9A35/"/>
       <url>/2022/01/18/%E7%8E%B0%E5%9C%A8%E6%98%AF2022.1.18%E7%9A%8410%EF%BC%9A35/</url>

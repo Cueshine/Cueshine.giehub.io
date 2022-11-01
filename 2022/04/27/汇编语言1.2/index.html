@@ -5,10 +5,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Cueshine">
-    <meta name="description" content="现在是2022.1.18的10：35
-刚听完无涯老师的课，为什么这么晚？因为他在后面讲到了系统的课。
-说实话，我是很期待的。但学习时间和效率一直是我读大学以来的问题，上面预计638h，但实际又只需学好300h就能就业。
-我一想到我接受着现在">
+    <meta name="description" content="实验一debug进入debug模式
+r查看寄存器
+​        当前 cs : ip 为0DAB:0100
+ 
+
+直接在当前指令修改
+此次用e命令输入机器码进行代码写入
+ 
+
+u命令查看汇编指令是否输入正确
+​    此刻发现0DAB：">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -456,7 +463,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-18
+                    2022-04-27
                 </div>
                 
 
@@ -480,19 +487,58 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>现在是2022.1.18的10：35</p>
-<p>刚听完无涯老师的课，为什么这么晚？因为他在后面讲到了系统的课。</p>
-<p>说实话，我是很期待的。但学习时间和效率一直是我读大学以来的问题，上面预计638h，但实际又只需学好300h就能就业。</p>
-<p>我一想到我接受着现在命运的摆布，就心痛、畏惧。</p>
-<p>发自灵魂内心深处的恐惧。我的家长深知社会的险恶，他们给我最好是让我在这么一个相对花园的环境中生活。不是说我得必须去接受社会的毒打，去自找不舒服，但是，如果我就这样下去，没有闪光点，没有做到自己认为可以说得出口的成就，哪里才是活的意义？未来怎么样，站在一个随时被替代或者说与能力随时被超越的地位。不学习，学得少，受什么不都应该是活该吗？</p>
-<p>有人说，我们被生活强健了。但我要说的是：我还没见到生活的棒子，就已经在前浪的安排下撅起屁股等待强健。</p>
-<p>说我的大学时期像边带孩子边学习，显然，我觉得有理。因此我TM讨厌自己会有孩子，我TM讨厌结婚，我TM一天天的被强健。</p>
-<p>话是很激烈的，但也不一定激得起将来我的抵触。</p>
-<p>。。。</p>
-<p>。。。</p>
-<p>。。。</p>
-<p>敢问路在何方？</p>
-<p>路在脚下</p>
+                <h2 id="实验一"><a href="#实验一" class="headerlink" title="实验一"></a>实验一</h2><p><code>debug</code>进入<code>debug模式</code></p>
+<p><code>r</code>查看寄存器</p>
+<p>​        当前 <code>cs : ip</code> 为<code>0DAB:0100</code></p>
+ <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_WAmjYnP7iE.png" alt="dosbox-x_WAmjYnP7iE" style="zoom: 80%;" />
+
+<p>直接在当前指令修改</p>
+<p>此次用<code>e</code>命令输入机器码进行代码写入</p>
+ <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_IvJah13wQh.png" alt="dosbox-x_IvJah13wQh" style="zoom:80%;" />
+
+<p><code>u</code>命令查看汇编指令是否输入正确</p>
+<p>​    此刻发现<code>0DAB：011D</code>处与理想不符</p>
+ <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_ghnJb4JpUf.png" alt="dosbox-x_ghnJb4JpUf" style="zoom:80%;" />
+
+<p>向上查阅，发现在<code>0DAB：011D</code>输入时直接跨过机器码04，输入了下一个机器码<code>9c</code></p>
+ <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_PH2Rw9xkvO.png" alt="dosbox-x_PH2Rw9xkvO" style="zoom:80%;" />
+
+<p> 用<code>e</code> <code>0BAD：011D</code>从输错的地方进行修正</p>
+ <img src="C:\Users\19923\AppData\Roaming\Typora\typora-user-images\image-20220427195456416.png" alt="image-20220427195456416" style="zoom:80%;" />
+
+<p> 用<code>t</code>执行输入的指令</p>
+ <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_7ulfgr54WG.png" alt="dosbox-x_7ulfgr54WG" style="zoom:80%;" />
+
+ <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_gmZphQtM1M.png" alt="dosbox-x_gmZphQtM1M" style="zoom:80%;" />
+
+<p> 用<code>a</code>指令将3条指令写入<code>0200：0</code>处</p>
+ <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_EIKYxmF61X.png" alt="dosbox-x_EIKYxmF61X" style="zoom:80%;" />
+
+<p> 用<code>t</code>指令运行，得到<code>ax=008</code></p>
+ <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_QuLDcgaUwD.png" alt="dosbox-x_QuLDcgaUwD" style="zoom:80%;" />
+
+ <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-04\dosbox-x_QHuzNaeH9n.png" alt="dosbox-x_QHuzNaeH9n" style="zoom:80%;" />
+
+<h2 id="实验二"><a href="#实验二" class="headerlink" title="实验二"></a>实验二</h2><p><code>d fff0:0 ff</code>查看<code>FFF00H:FFFFFH</code></p>
+<p>发现在<code>FFFF0:FFFFF</code>处应该为所要找的ROM的生产日期</p>
+<p> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-05\dosbox-x_nt52x6woyh.png" alt="dosbox-x_nt52x6woyh"></p>
+<p><code>e fff0:f0</code>对日期进行修改，目标为11/30/01</p>
+<p> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-05\dosbox-x_9hzfSDo31e.png" alt="dosbox-x_9hzfSDo31e"></p>
+<p>查看发现并未改变，疑似目标日期的格式不符所导致修改错误。 <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-05\dosbox-x_sABWEsPQwX.png" alt="dosbox-x_sABWEsPQwX"></p>
+<p>重新进行一边，将日期修改为30/11/01</p>
+<p>依旧不行</p>
+<p> <img src="C:\Users\19923\Documents\ShareX\Screenshots\2022-05\dosbox-x_dtPQVwNdjj.png" alt="dosbox-x_dtPQVwNdjj"></p>
+<h2 id="实验三"><a href="#实验三" class="headerlink" title="实验三"></a><strong>实验三</strong></h2><p><code>d b810:0</code>查看将要修改的地址内容</p>
+<p><code>e b810:0</code>进行修改，这里发现B8100H存储的30与之前查看的20不符，</p>
+<p><code>d b810:0</code>再次进行查看，发现不仅没有修改成功，而且又变成另一个值</p>
+<p>​    注意看B8105中的数字</p>
+<p>​        第一次查看时为20</p>
+<p>​        第二次修改时为34，并妄图对其修改为05</p>
+<p>​        第三次查看时为42</p>
+<p>经网上查阅，B800H:0000H后的内存是显示存储器</p>
+<p>用debug的E命令修改为01 02 03 04…</p>
+<p>但由于后面的D命令，刷新了屏幕，所以再用D命令看B810:0000时就看不到01 02 03…</p>
+<p> <img src="C:\Users\19923\AppData\Roaming\Typora\typora-user-images\image-20220503201530843.png" alt="image-20220503201530843"></p>
 
                 
             </div>
@@ -519,7 +565,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Cueshine.github.io/2022/01/18/%E7%8E%B0%E5%9C%A8%E6%98%AF2022.1.18%E7%9A%8410%EF%BC%9A35/">http://Cueshine.github.io/2022/01/18/%E7%8E%B0%E5%9C%A8%E6%98%AF2022.1.18%E7%9A%8410%EF%BC%9A35/</a>
+                    <a href="http://Cueshine.github.io/2022/04/27/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%801.2/">http://Cueshine.github.io/2022/04/27/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%801.2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -725,7 +771,7 @@
         repo: 'Cueshine.github.io',
         owner: 'Cueshine',
         admin: ["Cueshine"],
-        id: '2022-01-18T23-03-01',
+        id: '2022-04-27T20-00-26',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -747,8 +793,8 @@
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'http://cueshine.github.io/2022/01/18/%E7%8E%B0%E5%9C%A8%E6%98%AF2022.1.18%E7%9A%8410%EF%BC%9A35/';
-        this.page.identifier = '/2022/01/18/%E7%8E%B0%E5%9C%A8%E6%98%AF2022.1.18%E7%9A%8410%EF%BC%9A35/';
+        this.page.url = 'http://cueshine.github.io/2022/04/27/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%801.2/';
+        this.page.identifier = '/2022/04/27/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%801.2/';
         this.page.title = '';
     };
     let disqus_shortname = '';
@@ -785,13 +831,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/04/27/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%801.2/">
+                <a href="/2022/09/29/nonpostgraduate/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="nonpostgraduate">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">nonpostgraduate</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -802,7 +848,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-27
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-09-29
                         </span>
                         <span class="publish-author">
                             
@@ -811,6 +857,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/blue-in-black-eyes/">
+                        <span class="chip bg-color">blue in black eyes</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -822,7 +876,7 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/07/%E4%B8%8D%E6%B4%BB/">
+                <a href="/2022/01/18/%E7%8E%B0%E5%9C%A8%E6%98%AF2022.1.18%E7%9A%8410%EF%BC%9A35/">
                     <div class="card-image">
                         
                         
@@ -839,7 +893,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-18
                             </span>
                         <span class="publish-author">
                             
